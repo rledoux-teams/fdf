@@ -6,14 +6,13 @@
 /*   By: rledoux <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 19:26:40 by rledoux           #+#    #+#             */
-/*   Updated: 2023/02/07 19:26:43 by rledoux          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:44:29 by rledoux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_fdf.h"
 #include "../inc/ft_color.h"
 #include "../inc/ft_mlx.h"
-#include "../inc/ft_math_matrix.h"
 
 void	ft_fill_background(mlx_image_t	*img, int width, int height, int color)
 {
@@ -26,7 +25,7 @@ void	ft_fill_background(mlx_image_t	*img, int width, int height, int color)
 		x = 0;
 		while (x < width)
 		{
-			ft_put_pixel(x, y, color, img);
+			ft_pixel(x, y, color, img);
 			x++;
 		}
 		y++;
@@ -34,24 +33,24 @@ void	ft_fill_background(mlx_image_t	*img, int width, int height, int color)
 	return ;
 }
 
-mlx_image_t	*ft_new_image(t_var *var, int width, int height, int x0, int y0)
+mlx_image_t	*ft_new_image(t_var *var, int width, int height, int x0)
 {
 	mlx_image_t	*img;
 
 	img = mlx_new_image(var->mlx, width, height);
 	if (!img)
 		ft_error(var->maps, NULL);
-	if (mlx_image_to_window(var->mlx, img, x0, y0) < 0)
+	if (mlx_image_to_window(var->mlx, img, x0, 0) < 0)
 		ft_error(var->maps, NULL);
 	return (img);
 }
 
-void	ft_create_menu(t_var *var, int width, int height, int x0, int y0)
+void	ft_create_menu(t_var *var, int width, int height, int x0)
 {
 	int	color;
 
 	color = ft_create_rgba(50, 50, 50, 255);
-	var->menu = ft_new_image(var, width, height, x0, y0);
+	var->menu = ft_new_image(var, width, height, x0);
 	ft_fill_background(var->menu, width, height, color);
 	color = ft_create_rgba(250, 250, 250, 255);
 	mlx_put_string(var->mlx, "Help menu", 50, 20);
@@ -66,12 +65,12 @@ void	ft_create_menu(t_var *var, int width, int height, int x0, int y0)
 	return ;
 }
 
-void	ft_create_display(t_var *var, int width, int height, int x0, int y0)
+void	ft_create_display(t_var *var, int width, int height, int x0)
 {
 	int	color;
 
 	color = ft_create_rgba(10, 10, 10, 255);
-	var->disp = ft_new_image(var, width, height, x0, y0);
+	var->disp = ft_new_image(var, width, height, x0);
 	ft_fill_background(var->disp, width, height, color);
 	return ;
 }

@@ -54,7 +54,6 @@ SRC				= ft_fdf.c \
 				  ft_maps_utils.c \
 				  ft_color.c \
 				  ft_mlx.c \
-				  ft_math_matrix.c \
 				  ft_screen.c \
 				  ft_mlx_utils.c
 
@@ -77,7 +76,6 @@ $(NAME):		$(OBJS)
 				make -C inc/libft/ all
 				make -C inc/MLX42/ all
 				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L inc/libft -lft -L inc/MLX42 -lmlx42 -L/usr/lib -lXext -lX11 -lm -lz $(MLXFLAGS)
-				@cat todo.txt
 # -----------------------------------------------------
 #						Rules
 # ----------------------------------------------------- 
@@ -86,6 +84,7 @@ clean:
 				$(MAKE) $(LFT_DIR) clean
 				$(MAKE) $(MLX_DIR) clean
 				$(RM) obj/*.o
+				@echo $(LRED)"Clean fdf !"$(NC)
  
 fclean:			clean
 				$(MAKE) $(LFT_DIR) fclean

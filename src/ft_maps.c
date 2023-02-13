@@ -6,14 +6,13 @@
 /*   By: rledoux <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 17:40:46 by rledoux           #+#    #+#             */
-/*   Updated: 2023/02/06 18:53:51 by rledoux          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:39:05 by rledoux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_fdf.h"
 #include "../inc/ft_color.h"
 #include "../inc/ft_mlx.h"
-#include "../inc/ft_math_matrix.h"
 
 void	ft_count_cols(t_maps *maps)
 {
@@ -35,9 +34,9 @@ void	ft_count_cols(t_maps *maps)
 
 void	ft_count_rows_in_fd(t_maps *maps, char **av)
 {
-	int	read_output;
+	int		read_output;
 	char	buf[1];
-	
+
 	maps->nb_lines = 0;
 	maps->fd = open(av[1], O_RDONLY);
 	if (maps->fd < 0 || maps->fd > 1024)
@@ -53,13 +52,13 @@ void	ft_count_rows_in_fd(t_maps *maps, char **av)
 	}
 	maps->nb_lines--;
 	close(maps->fd);
-	
 }
 
 void	ft_init_matrix(t_maps *maps, int y)
 {
-	int	x;
+	int		x;
 	char	**line_split;
+	int		color;
 
 	x = 0;
 	maps->matrix[y] = malloc(sizeof(t_matrix) * maps->nb_col);
@@ -71,8 +70,9 @@ void	ft_init_matrix(t_maps *maps, int y)
 		maps->matrix[y][x].x = x - (maps->nb_col / 2);
 		maps->matrix[y][x].y = y - (maps->nb_lines / 2);
 		maps->matrix[y][x].z = ft_atoi(line_split[x]);
+		color = ft_create_rgba(255 / maps->matrix[y][x].z + 50, 0, 0, 255);
 		if (maps->matrix[y][x].z)
-			maps->matrix[y][x].color = ft_create_rgba(255 / maps->matrix[y][x].z + 50, 0, 0, 255);
+			maps->matrix[y][x].color = color;
 		else
 			maps->matrix[y][x].color = ft_create_rgba(100, 100, 100, 255);
 		maps->matrix[y][x] = ft_rotate(maps->matrix[y][x], 30);
@@ -103,4 +103,3 @@ void	ft_maps(char **av, t_maps *maps)
 	close(maps->fd);
 	return ;
 }
-

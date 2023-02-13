@@ -6,51 +6,32 @@
 /*   By: rledoux <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:48:16 by rledoux           #+#    #+#             */
-/*   Updated: 2023/02/06 20:13:07 by rledoux          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:39:31 by rledoux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_fdf.h"
 #include "../inc/ft_color.h"
 #include "../inc/ft_mlx.h"
-#include "../inc/ft_math_matrix.h"
-#include <stdlib.h>
 
-void	ft_put_pixel(int x, int y, int rgba, mlx_image_t *img)
-{
-	if (x < WIDTH && y < HEIGHT && x > 0 && y > 0)
-		mlx_put_pixel(img, x, y, rgba);
-	return ;
-}
-
-int	ft_round(float n)
-{
-	if (n - (int)n < 0.5)
-		return ((int)n);
-	return ((int)n + 1);
-}
-
-void	ft_dda(t_todraw draw, t_var *var, int x, int y)
+void	ft_dda(t_todraw draw, t_var *v, int x, int y)
 {
 	t_dda	dda;
-	//int	color;
 
 	dda.dx = draw.x2 - draw.x1;
 	dda.dy = draw.y2 - draw.y1;
 	if (dda.dx >= dda.dy)
-		dda.step =  fabs(dda.dx);
+		dda.step = fabs(dda.dx);
 	else
 		dda.step = fabs(dda.dy);
 	dda.dx = dda.dx / dda.step;
 	dda.dy = dda.dy / dda.step;
 	dda.x = draw.x1;
 	dda.y = draw.y1;
-
 	dda.i = 1;
-	while(dda.i <= dda.step)
+	while (dda.i <= dda.step)
 	{
-		//color = ft_gradient(var->matrix[y][x].color, draw.color2, dda.i, dda.step);
-		ft_put_pixel(ft_round(dda.x), ft_round(dda.y), var->matrix[y][x].color, var->disp);
+		ft_pixel(fround(dda.x), fround(dda.y), v->matrix[y][x].color, v->disp);
 		dda.x = dda.x + dda.dx;
 		dda.y = dda.y + dda.dy;
 		dda.i++;
@@ -60,8 +41,8 @@ void	ft_dda(t_todraw draw, t_var *var, int x, int y)
 void	ft_to_draw_init(t_var *var, int x, int y)
 {
 	t_todraw	todraw;
-	int	dist;
-	int	offset[2];
+	int			dist;
+	int			offset[2];
 
 	dist = var->dist;
 	offset[0] = var->disp->width / 2 + var->offsetx;
@@ -84,8 +65,8 @@ void	ft_to_draw_init(t_var *var, int x, int y)
 void	ft_to_draw_final(t_var *var, int x, int y)
 {
 	t_todraw	todraw;
-	int	dist;
-	int	offset[2];
+	int			dist;
+	int			offset[2];
 
 	dist = var->dist;
 	offset[0] = var->disp->width / 2 + var->offsetx;
@@ -110,10 +91,10 @@ void	ft_render(void	*param)
 	t_var		*var;
 	int			x;
 	int			y;
-	
+
 	var = param;
 	y = 0;
-	ft_create_display(var, WIDTH_I, HEIGHT_I, 200, 0);
+	ft_create_display(var, WIDTH_I, HEIGHT_I, 300);
 	while (y < var->maps->nb_lines - 1)
 	{
 		x = 0;

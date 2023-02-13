@@ -6,7 +6,7 @@
 /*   By: rledoux <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 16:13:39 by rledoux           #+#    #+#             */
-/*   Updated: 2022/10/19 16:38:58 by rledoux          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:37:26 by rledoux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -33,7 +33,7 @@ const char	*ft_format_finder(const char *format, va_list args, int *len)
 	{
 		ft_putchar_printf('%');
 		ft_putchar_printf(*format);
-		*len = *len +2;
+		*len = *len + 2;
 	}
 	return (format + 1);
 }

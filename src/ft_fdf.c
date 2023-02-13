@@ -6,14 +6,13 @@
 /*   By: rledoux <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:56:14 by rledoux           #+#    #+#             */
-/*   Updated: 2023/02/06 14:36:58 by rledoux          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:39:09 by rledoux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_fdf.h"
 #include "../inc/ft_color.h"
 #include "../inc/ft_mlx.h"
-#include "../inc/ft_math_matrix.h"
 
 void	ft_error(t_maps *maps, char *message)
 {
@@ -46,7 +45,7 @@ void	ft_double_free(void **ptr, int size)
 	return ;
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_maps	maps;
 	t_var	var;
@@ -64,8 +63,8 @@ int main(int ac, char **av)
 	var.dist = 10;
 	var.offsetx = 0;
 	var.offsety = 0;
-	ft_create_display(&var, WIDTH_I, HEIGHT_I, 300, 0);
-	ft_create_menu(&var, WIDTH_M, HEIGHT_M, 0, 0);
+	ft_create_display(&var, WIDTH_I, HEIGHT_I, 300);
+	ft_create_menu(&var, WIDTH_M, HEIGHT_M, 0);
 	mlx_loop_hook(mlx, ft_render, &var);
 	mlx_key_hook(mlx, ft_key_hook, &var);
 	mlx_loop(mlx);

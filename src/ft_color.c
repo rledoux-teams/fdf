@@ -6,7 +6,7 @@
 /*   By: rledoux <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:48:10 by rledoux           #+#    #+#             */
-/*   Updated: 2023/02/02 16:29:40 by rledoux          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:12:17 by rledoux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ int	ft_get_b(int rgba)
 	return ((rgba >> 8) & 0xFF);
 }
 
-
 int	ft_get_a(int rgba)
 {
 	return (rgba & 0xFF);
 }
-

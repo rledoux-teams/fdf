@@ -61,7 +61,7 @@ SRC			= ft_isalnum.c ft_isprint.c ft_memcmp.c  ft_putchar_fd.c ft_split.c \
 SRCS			= $(addprefix $(SRC_DIR)/, $(SRC))
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
-				@echo -e $(GREEN)Compiling:$(NC) $(notdir $<)
+				@echo $(GREEN)"Compiling:"$(NC) $(notdir $<)
 				$(CC) $(CFLAGS) -c $< -o $@
 
 OBJS			=  $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -82,11 +82,10 @@ $(NAME):		$(OBJS)
 
 clean:
 				$(RM) obj/*.o
-				echo -e $(LRED)"LIBFT clean"$(NC)
+				echo $(LRED)"LIBFT clean"$(NC)
  
 fclean:			clean
 				$(RM) $(NAME)
-				echo -e $(LRED)"LIBFT fclean"$(NC)
  
 re:				fclean $(NAME)  
 
