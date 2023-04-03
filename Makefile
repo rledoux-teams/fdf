@@ -39,6 +39,7 @@ MLX_DIR			= ./inc/MLX42
 # -----------------------------------------------------
 
 MAKE			= make -sC
+MAKEFLAGS		:=	--no-print-directory
 CC				= gcc -g
 CFLAGS			= -Wall -Werror -Wextra
 MLXFLAGS		= -ldl -lglfw -pthread -lm

@@ -77,10 +77,10 @@ void	ft_to_draw_final(t_var *var, int x, int y)
 	todraw.y2 = dist * var->matrix[y][x].y + offset[1];
 	todraw.color2 = var->matrix[y][0].color;
 	ft_dda(todraw, var, x, y);
-	todraw.x1 = dist * (var->matrix[0][x].x + offset[0]);
-	todraw.x2 = dist * (var->matrix[y][x].x + offset[0]);
-	todraw.y1 = dist * (var->matrix[0][x].y + offset[1]);
-	todraw.y2 = dist * (var->matrix[y][x].y + offset[1]);
+	todraw.x1 = dist * var->matrix[0][x].x + offset[0];
+	todraw.x2 = dist * var->matrix[y][x].x + offset[0];
+	todraw.y1 = dist * var->matrix[0][x].y + offset[1];
+	todraw.y2 = dist * var->matrix[y][x].y + offset[1];
 	todraw.color2 = var->matrix[0][x].color;
 	ft_dda(todraw, var, x, y);
 	return ;

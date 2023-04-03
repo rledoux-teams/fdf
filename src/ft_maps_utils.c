@@ -24,16 +24,26 @@ size_t	ft_strlen_fdf(const char *s)
 	return (i);
 }
 
+void	ft_error2(t_maps *maps, char *message)
+{
+	ft_free_all(maps);
+	if (!message)
+		perror(strerror(errno));
+	else
+		perror(message);
+	exit(EXIT_FAILURE);
+}
+
 void	ft_maps_init(t_maps *maps, char **av)
 {
 	maps->nb_col = 0;
 	ft_count_rows_in_fd(maps, av);
 	maps->matrix = malloc(maps->nb_lines * sizeof(t_matrix *));
 	if (!maps->matrix)
-		ft_error(maps, NULL);
+		ft_error2(maps, NULL);
 	maps->fd = open(av[1], O_RDONLY);
 	if (maps->fd < 0 || maps->fd > 1024)
-		ft_error(maps, NULL);
+		ft_error2(maps, NULL);
 	return ;
 }
 

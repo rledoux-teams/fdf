@@ -40,7 +40,7 @@ void	ft_count_rows_in_fd(t_maps *maps, char **av)
 	maps->nb_lines = 0;
 	maps->fd = open(av[1], O_RDONLY);
 	if (maps->fd < 0 || maps->fd > 1024)
-		ft_error(maps, NULL);
+		ft_error2(maps, NULL);
 	read_output = read(maps->fd, buf, 1);
 	if (*buf == '\n')
 		maps->nb_lines++;
@@ -63,7 +63,7 @@ void	ft_init_matrix(t_maps *maps, int y)
 	x = 0;
 	maps->matrix[y] = malloc(sizeof(t_matrix) * maps->nb_col);
 	if (!maps->matrix[y])
-		ft_error(maps, NULL);
+		ft_error2(maps, NULL);
 	line_split = ft_split(maps->temp_line, ' ');
 	while (x < maps->nb_col)
 	{

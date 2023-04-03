@@ -44,7 +44,7 @@ typedef struct s_maps
 	t_matrix	**matrix;
 }	t_maps;
 
-void		ft_error(t_maps *maps, char *message);
+void		ft_error2(t_maps *maps, char *message);
 void		ft_free_all(t_maps *maps);
 void		ft_double_free(void **ptr, int size);
 void		ft_maps(char **av, t_maps *maps);

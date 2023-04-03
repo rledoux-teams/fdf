@@ -61,6 +61,7 @@ typedef struct s_rotmat
 	float	rotationz[3][3];
 }				t_rotmat;
 
+void		ft_error(t_var *var, char *message);
 void		ft_translate(int x, int y, t_var *var);
 void		ft_key_hook(mlx_key_data_t keydata, void *param);
 void		ft_pixel(int x, int y, int rgba, mlx_image_t *img);

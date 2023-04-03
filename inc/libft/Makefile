@@ -38,6 +38,7 @@ INC_DIR			= ./inc
 # -----------------------------------------------------
 
 MAKE			= make -sC
+MAKEFLAGS		:=	--no-print-directory
 CC				= gcc -g
 CFLAGS			= -Wall -Werror -Wextra
 RM				= rm -f

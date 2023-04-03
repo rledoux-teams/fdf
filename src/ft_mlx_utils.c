@@ -34,10 +34,7 @@ void	ft_key_hook(mlx_key_data_t keydata, void *param)
 
 	var = param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-	{
-		mlx_terminate(var->mlx);
-		ft_error(var->maps, "Program leave by user");
-	}
+		ft_error(var, "Program leave by user");
 	if (keydata.key == MLX_KEY_PAGE_UP && keydata.action == MLX_PRESS)
 		var->dist++;
 	if (keydata.key == MLX_KEY_PAGE_DOWN && keydata.action == MLX_PRESS

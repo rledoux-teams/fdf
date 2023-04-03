@@ -14,9 +14,15 @@
 #include "../inc/ft_color.h"
 #include "../inc/ft_mlx.h"
 
-void	ft_error(t_maps *maps, char *message)
+void	ft_error(t_var *var, char *message)
 {
-	ft_free_all(maps);
+	ft_free_all(var->maps);
+	if (var->mlx)
+	{
+		mlx_delete_image(var->mlx, var->menu);
+		mlx_delete_image(var->mlx, var->disp);
+		mlx_terminate(var->mlx);
+	}
 	if (!message)
 		perror(strerror(errno));
 	else
@@ -56,7 +62,7 @@ int	main(int ac, char **av)
 	ft_maps(av, &maps);
 	mlx = mlx_init(WIDTH, HEIGHT, "fdf by rledoux", true);
 	if (!mlx)
-		ft_error(&maps, NULL);
+		ft_error(&var, NULL);
 	var.maps = &maps;
 	var.matrix = maps.matrix;
 	var.mlx = mlx;
@@ -68,7 +74,6 @@ int	main(int ac, char **av)
 	mlx_loop_hook(mlx, ft_render, &var);
 	mlx_key_hook(mlx, ft_key_hook, &var);
 	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	ft_error(var.maps, "Program leave by user");
+	ft_error(&var, "Program leave by user");
 	return (EXIT_SUCCESS);
 }

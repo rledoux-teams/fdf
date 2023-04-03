@@ -39,9 +39,9 @@ mlx_image_t	*ft_new_image(t_var *var, int width, int height, int x0)
 
 	img = mlx_new_image(var->mlx, width, height);
 	if (!img)
-		ft_error(var->maps, NULL);
+		ft_error(var, NULL);
 	if (mlx_image_to_window(var->mlx, img, x0, 0) < 0)
-		ft_error(var->maps, NULL);
+		ft_error(var, NULL);
 	return (img);
 }
 
